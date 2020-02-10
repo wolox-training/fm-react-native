@@ -13,8 +13,9 @@ class BookList extends Component {
       <FlatList
         data = {this.props.bookList}
         renderItem={({item}) => <Book style = {styles.listItem} book = {item}/>}
+        keyExtractor={item => item.id.toString()}
       />
-    </View>
+    </View> 
     );
   }
 };
