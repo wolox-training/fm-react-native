@@ -7,33 +7,16 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-
-import BookListContainer from './screens/library/components/bookList/index.js'
+import BookListContainer from './screens/library/components/bookList/index';
 
 const App: () => React$Node = () => {
-  let mockData = require('./mocklist.json');
+  const mockData = require('./mocklist.json');
   return (
-          <View>
-            <BookListContainer bookList = {mockData}/>
-          </View>
-
+    <NavigationContainer>
+      <BookListContainer bookList={mockData} />
+    </NavigationContainer>
   );
 };
 
