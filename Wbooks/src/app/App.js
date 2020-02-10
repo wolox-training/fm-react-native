@@ -10,14 +10,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
 import BookListContainer from './screens/library/components/bookList/index';
+import mockData from './mocklist.json';
 
-const App: () => React$Node = () => {
-  const mockData = require('./mocklist.json');
-  return (
-    <NavigationContainer>
-      <BookListContainer bookList={mockData} />
-    </NavigationContainer>
-  );
-};
+const App: () => React$Node = () => (
+  <NavigationContainer>
+    <BookListContainer bookList={mockData} />
+  </NavigationContainer>
+);
 
 export default App;

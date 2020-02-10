@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { View, FlatList } from 'react-native';
 
-import Book from '../book/index.js';
+import Book from '../book/index';
 
-import styles from './styles.js';
+import styles from './styles';
 
 class BookList extends Component {
+  renderItem = ({ item }) => <Book style={styles.listItem} book={item} />;
+
+  keyExtractor = ({ item }) => item.id.toString();
+
   render() {
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={this.props.bookList}
-          renderItem={({ item }) => <Book style={styles.listItem} book={item} />}
-          keyExtractor={item => item.id.toString()}
-        />
-      </View>
+      <FlatList
+        style={styles.container}
+        data={this.props.bookList}
+        renderItem={this.renderItem}
+        keyExtractor={this.keyExtractor}
+      />
     );
   }
 }

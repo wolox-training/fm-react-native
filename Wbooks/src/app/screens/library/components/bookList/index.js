@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React from 'react';
 
 import BookList from './layout';
 
-class BookListContainer extends Component {
-  render() {
-    return (
-      <View>
-        <BookList bookList={this.props.bookList} />
-      </View>
-    );
-  }
+function BookListContainer({ props }) {
+  return <BookList bookList={props.bookList} />;
 }
 
 export default BookListContainer;
