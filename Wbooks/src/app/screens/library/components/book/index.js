@@ -1,9 +1,26 @@
 import React from 'react';
+import { View, Image, Text } from 'react-native';
 
-import Book from './layout';
+import propTypes from '../../../../proptypes/proptypes';
 
-function BookContainer({ book }) {
-  return <Book title={book.title} author={book.author} image_url={book.image_url} />;
+import styles from './styles';
+
+function Book({ book: { image_url: imageUrl, title, author } }) {
+  return (
+    <View style={styles.bookContainer}>
+      <Image source={{ uri: imageUrl }} style={styles.cover} />
+      <View style={styles.descriptionContainer}>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.author}>{author}</Text>
+      </View>
+    </View>
+  );
 }
 
-export default BookContainer;
+Book.propTypes = {
+  author: propTypes.optionalString,
+  book: propTypes.optionalBook,
+  title: propTypes.optionalString
+};
+
+export default Book;
