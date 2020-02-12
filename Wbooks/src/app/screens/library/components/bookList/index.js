@@ -12,11 +12,11 @@ class BookListContainer extends Component {
   keyExtractor = item => item.id.toString();
 
   render() {
-    console.log(this.props.bookList);
+    const { bookList } = this.props; 
     return (
       <FlatList
         style={styles.container}
-        data={this.props.bookList}
+        data={bookList}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
       />

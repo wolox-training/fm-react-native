@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
+import { bool, number, string, array, bool, shape, arrayOf } from 'prop-types';
 
 const propTypes = {
-  optionalArray: PropTypes.array,
-  optionalBool: PropTypes.bool,
-  optionalFunc: PropTypes.func,
-  optionalNumber: PropTypes.number,
-  optionalObject: PropTypes.object,
-  optionalString: PropTypes.string,
-  optionalSymbol: PropTypes.symbol,
-  optionalBook: PropTypes.shape({
+
+  optionalArray: array,
+  optionalBool: bool,
+  optionalNumber: number,
+  optionalString: string,
+  optionalSymbol: symbol,
+
+  bookModel: shape({
     author: PropTypes.string,
     genre: PropTypes.string,
     id: PropTypes.number,
@@ -17,8 +17,8 @@ const propTypes = {
     title: PropTypes.string,
     year: PropTypes.string
   }),
-  optionalArrayOfBooks: PropTypes.arrayOf(
-    PropTypes.shape({
+  optionalArrayOfBooks: arrayOf(
+    shape({
       author: PropTypes.string,
       genre: PropTypes.string,
       id: PropTypes.number,
