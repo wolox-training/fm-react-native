@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
+import PropTypes from 'prop-types';
 
-import propTypes from '../../../../proptypes/proptypes';
+import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
 
@@ -18,9 +19,7 @@ function Book({ book: { image_url: imageUrl, title, author } }) {
 }
 
 Book.propTypes = {
-  author: propTypes.optionalString,
-  book: propTypes.optionalBook,
-  title: propTypes.optionalString
+  book: PropTypes.shape(bookModel)
 };
 
 export default Book;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
+import PropTypes, { shape } from 'prop-types';
 
-import propTypes from '../../../../proptypes/proptypes';
+import bookModel from '../../../../proptypes/bookModel';
 import Book from '../book/index';
 
 import styles from './styles';
@@ -12,7 +13,7 @@ class BookListContainer extends Component {
   keyExtractor = item => item.id.toString();
 
   render() {
-    const { bookList } = this.props; 
+    const { bookList } = this.props;
     return (
       <FlatList
         style={styles.container}
@@ -25,6 +26,6 @@ class BookListContainer extends Component {
 }
 
 BookListContainer.propTypes = {
-  bookList: propTypes.optionalArrayOfBooks
+  bookList: PropTypes.arrayOf(PropTypes.shape(bookModel))
 };
 export default BookListContainer;
