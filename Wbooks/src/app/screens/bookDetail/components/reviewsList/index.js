@@ -2,23 +2,22 @@ import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 
-import Book from '../book/index';
-import routes from '../../../routes';
-import mockData from '../../../../mocklist.json';
+import reviewModel from '../../../../proptypes/reviewModel';
+import Review from '../review';
 
 import styles from './styles';
 
-class BookListContainer extends Component {
-  renderItem = ({ item }) => <Book book={item} navigation={this.props.navigation} />;
+class ReviewsList extends Component {
+  renderItem = ({ item }) => <Review review={item} />;
 
   keyExtractor = item => item.id.toString();
 
   render() {
-    const bookList = mockData;
+    const { reviews } = this.props;
     return (
       <FlatList
         style={styles.container}
-        data={bookList}
+        data={reviews}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
       />
@@ -26,4 +25,8 @@ class BookListContainer extends Component {
   }
 }
 
-export default BookListContainer;
+ReviewsList.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.shape(reviewModel))
+};
+
+export default ReviewsList;

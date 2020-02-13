@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 
+import fonts from '../../../../../constants/fonts';
+
 import colors from './colors';
-import fonts from './fonts';
 
 const styles = StyleSheet.create({
   author: {
