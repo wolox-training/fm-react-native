@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   title: {
     color: colors.bookTitle,
     fontSize: 17,
-    fontFamily: fonts.bookDescription,
+    fontFamily: fonts.sfLight,
     fontWeight: 'bold',
     letterSpacing: -0.41,
     lineHeight: 20,

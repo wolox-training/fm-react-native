@@ -8,9 +8,8 @@ import styles from './styles';
 
 class Book extends Component {
   handlePress = () => {
-    console.log('--------');
     const { navigation, book } = this.props;
-    navigation.navigate('BookDetail', { book });
+    navigation.navigate('BookDetail', { navigation, book });
   };
 
   render() {
@@ -19,14 +18,14 @@ class Book extends Component {
     } = this.props;
 
     return (
-      <TouchableWithoutFeedback style={styles.bookContainer} onPress={this.handlePress}>
-        <>
+      <TouchableWithoutFeedback onPress={this.handlePress}>
+        <View style={styles.bookContainer}>
           <Image source={{ uri: imageUrl }} style={styles.cover} />
           <View style={styles.descriptionContainer}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.author}>{author}</Text>
           </View>
-        </>
+        </View>
       </TouchableWithoutFeedback>
     );
   }

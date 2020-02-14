@@ -1,4 +1,4 @@
-import { string, number } from 'prop-types';
+import { string } from 'prop-types';
 
 const reviewModel = {
   user: {

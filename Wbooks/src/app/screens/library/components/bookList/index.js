@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
-import PropTypes from 'prop-types';
 
 import Book from '../book/index';
-import routes from '../../../routes';
 import mockData from '../../../../mocklist.json';
 
 import styles from './styles';

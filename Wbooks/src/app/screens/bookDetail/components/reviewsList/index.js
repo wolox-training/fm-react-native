@@ -16,7 +16,7 @@ class ReviewsList extends Component {
     const { reviews } = this.props;
     return (
       <FlatList
-        style={styles.container}
+        style={styles.reviewsContainer}
         data={reviews}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
