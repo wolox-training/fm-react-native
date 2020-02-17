@@ -9,7 +9,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import TabNavigator from './screens/TabsNavigator';
+import TabNavigator from './screens/navigation/tabsNavigator';
 
 const App: () => React$Node = () => (
   <NavigationContainer>

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Library from './library/components/bookList';
-import BookDetail from './bookDetail';
+import Library from '../library/components/bookList';
+import BookDetail from '../bookDetail';
+
 import routes from './routes';
 
 const Stack = createStackNavigator();
