@@ -7,7 +7,7 @@ import routes from './routes';
 
 const Stack = createStackNavigator();
 
-function Navigator() {
+function StackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name={routes.library} component={Library} />
@@ -16,4 +16,4 @@ function Navigator() {
   );
 }
 
-export default Navigator;
+export default StackNavigator;

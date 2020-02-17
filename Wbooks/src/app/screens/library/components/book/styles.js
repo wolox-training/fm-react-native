@@ -1,8 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import fonts from '../../../../../constants/fonts';
-
-import colors from './colors';
+import colors from '../../../../../constants/colors';
 
 const styles = StyleSheet.create({
   author: {
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
   bookContainer: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: colors.containerBackground,
+    backgroundColor: colors.white,
     height: 90,
     marginHorizontal: 20,
     marginBottom: 10
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   title: {
-    color: colors.bookTitle,
+    color: colors.black2,
     fontSize: 17,
     fontFamily: fonts.sfLight,
     fontWeight: 'bold',

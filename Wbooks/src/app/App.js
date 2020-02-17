@@ -9,11 +9,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Navigator from './screens/navigator';
+import TabNavigator from './screens/TabsNavigator';
 
 const App: () => React$Node = () => (
   <NavigationContainer>
-    <Navigator />
+    <TabNavigator/>
   </NavigationContainer>
 );
 
