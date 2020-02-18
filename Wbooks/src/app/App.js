@@ -13,7 +13,7 @@ import TabNavigator from './screens/navigation/tabsNavigator';
 
 const App: () => React$Node = () => (
   <NavigationContainer>
-    <TabNavigator/>
+    <TabNavigator />
   </NavigationContainer>
 );
 

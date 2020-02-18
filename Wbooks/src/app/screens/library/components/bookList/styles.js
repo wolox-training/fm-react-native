@@ -5,7 +5,7 @@ import colors from '../../../../../constants/colors';
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.polar,
-    paddingTop: 16,
+    paddingTop: 116,
     borderRadius: 5,
     shadowOffset: { width: 0, height: 1 },
     shadowColor: colors.tundora

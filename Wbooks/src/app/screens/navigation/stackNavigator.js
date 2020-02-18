@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Library from '../library/components/bookList';
 import BookDetail from '../bookDetail';
+import { defaultNavOptions } from '../../../config/navigationOptions';
 
 import routes from './routes';
 
@@ -11,8 +12,8 @@ const Stack = createStackNavigator();
 function StackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={routes.library} component={Library} />
-      <Stack.Screen name={routes.bookDetail} component={BookDetail} />
+      <Stack.Screen name={routes.Library} component={Library} options={defaultNavOptions} />
+      <Stack.Screen name={routes.BookDetail} component={BookDetail} />
     </Stack.Navigator>
   );
 }
