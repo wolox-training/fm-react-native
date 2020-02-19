@@ -12,8 +12,16 @@ const Stack = createStackNavigator();
 function StackNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={routes.Library} component={Library} options={defaultNavOptions} />
-      <Stack.Screen name={routes.BookDetail} component={BookDetail} />
+      <Stack.Screen
+        name={routes.Library}
+        component={Library}
+        options={defaultNavOptions('Notifications', 'Search', 'LIBRARY')}
+      />
+      <Stack.Screen
+        name={routes.BookDetail}
+        component={BookDetail}
+        options={defaultNavOptions('Back', null, 'BookDetail')}
+      />
     </Stack.Navigator>
   );
 }

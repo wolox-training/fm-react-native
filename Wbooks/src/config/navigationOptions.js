@@ -1,15 +1,20 @@
 import React from 'react';
-import { Image } from 'react-native';
+import PropTypes from 'prop-types';
 
-import colors from '../constants/colors';
-import CustomHeaderContainer from '../app/screens/navigation/components/customHeader';
+import CustomHeaderContainer from '../app/components/header/index';
 
-export const defaultNavOptions = {
-  headerTitle: 'title',
-  header: props => <CustomHeaderContainer title="titulo" />,
-  headerStyle: {
-    backgroundColor: 'transparent '
-  },
-  headerTintColor: colors.atlantis,
-  headerBackTitle: 'back'
+export function defaultNavOptions(leftButton, rightButton, title) {
+  const nav = {
+    header: () => <CustomHeaderContainer leftButton={leftButton} rightButton={rightButton} title={title} />,
+    headerStyle: {
+      backgroundColor: 'transparent '
+    }
+  };
+  return nav;
+}
+
+defaultNavOptions.propTypes = {
+  leftButton: PropTypes.string,
+  rightButton: PropTypes.string,
+  title: PropTypes.string
 };
