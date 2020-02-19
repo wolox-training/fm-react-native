@@ -6,7 +6,8 @@ const colors = {
   white: '#FFFFFF',
   cerulean: '#00ADEE',
   turquoise: '#39CCCD',
-  atlantis: '#A5CD39'
+  atlantis: '#A5CD39',
+  red: '#D0021B'
 };
 
 export default colors;

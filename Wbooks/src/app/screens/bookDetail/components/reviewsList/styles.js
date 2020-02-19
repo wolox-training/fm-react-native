@@ -1,12 +1,17 @@
 import { StyleSheet } from 'react-native';
-import colors from '../../../../../constants/colors';
+
+import { white } from '../../../../../constants/colors/';
+
+const LARGE_MARGIN = 30;
+const MEDIUM_MARGIN = 20;
+const STANDARD_MARGIN = 10;
 
 const styles = StyleSheet.create({
   reviewsContainer: {
-    backgroundColor: colors.white,
-    marginTop: 10,
-    marginHorizontal: 20,
-    marginBottom: 30,
+    backgroundColor: white,
+    marginTop: STANDARD_MARGIN,
+    marginHorizontal: MEDIUM_MARGIN,
+    marginBottom: LARGE_MARGIN,
     borderRadius: 5
   }
 });

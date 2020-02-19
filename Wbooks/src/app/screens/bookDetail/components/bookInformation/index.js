@@ -7,8 +7,8 @@ import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
 
-function BookInformation({ book, available }) {
-  const { image_url: imageUrl, title, author, genre, year } = book;
+function BookInformation({ book: { image_url: imageUrl, title, author, genre, year }, available }) {
+  console.log(available);
   return (
     <View style={styles.bookInfoContainer}>
       <View style={styles.bookDataContainer}>
@@ -22,7 +22,7 @@ function BookInformation({ book, available }) {
           <Text style={styles.title} ellipsizeMode="tail">
             {title}
           </Text>
-          <Text style={available ? styles.bookAvailable : styles.bookAvailable}>
+          <Text style={available ? styles.bookAvailable : styles.bookUnavailable}>
             {available ? 'Available' : 'Not Available'}
           </Text>
           <Text style={styles.description}>{author}</Text>
@@ -37,9 +37,11 @@ function BookInformation({ book, available }) {
 }
 
 BookInformation.propTypes = {
+  author: PropTypes.string,
   available: PropTypes.bool,
   book: PropTypes.shape(bookModel),
   genre: PropTypes.string,
+  imageUrl: PropTypes.string,
   title: PropTypes.string,
   year: PropTypes.string
 };

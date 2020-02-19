@@ -12,11 +12,10 @@ import reviewsMock from './reviewsmock.json';
 
 function BookDetailContainer({ route }) {
   const { book } = route.params;
-  const reviews = reviewsMock;
   return (
     <ScrollView style={styles.bookDetailContainer}>
       <BookInformation book={book} />
-      <ReviewsList reviews={reviews} />
+      <ReviewsList reviews={reviewsMock} />
     </ScrollView>
   );
 }

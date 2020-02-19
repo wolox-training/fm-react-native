@@ -12,11 +12,10 @@ class BookListContainer extends Component {
   keyExtractor = item => item.id.toString();
 
   render() {
-    const bookList = mockData;
     return (
       <FlatList
         style={styles.container}
-        data={bookList}
+        data={mockData}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
       />

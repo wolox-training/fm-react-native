@@ -3,16 +3,21 @@ import { StyleSheet } from 'react-native';
 import colors from '../../../../../constants/colors';
 import fonts from '../../../../../constants/fonts';
 
+const BUTTON_BORDER_RADIUS = 100;
+const BUTTON_WIDTH = 275;
+const LARGE_MARGIN = 30;
+const STANDARD_MARGIN = 10;
+
 const styles = StyleSheet.create({
   shallowButton: {
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: 100,
+    borderRadius: BUTTON_BORDER_RADIUS,
     height: 44,
-    marginHorizontal: 30,
-    marginBottom: 10,
-    width: 275,
+    marginHorizontal: LARGE_MARGIN,
+    marginBottom: STANDARD_MARGIN,
+    width: BUTTON_WIDTH,
     borderColor: colors.turquoise,
     backgroundColor: colors.white
   },
@@ -20,11 +25,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: 100,
+    borderRadius: BUTTON_BORDER_RADIUS,
     height: 44,
-    marginHorizontal: 30,
-    marginBottom: 10,
-    width: 275,
+    marginHorizontal: LARGE_MARGIN,
+    marginBottom: STANDARD_MARGIN,
+    width: BUTTON_WIDTH,
     borderColor: colors.turquoise,
     backgroundColor: colors.cerulean
   },
