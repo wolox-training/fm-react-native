@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../../../../../constants/colors';
+import { tundora, atlantis, white } from '../../../../../constants/colors';
 import fonts from '../../../../../constants/fonts';
 
 const styles = StyleSheet.create({
   bookInfoContainer: {
     marginHorizontal: 20,
     marginTop: 20,
-    backgroundColor: colors.white,
+    backgroundColor: white,
     borderRadius: 5
   },
   bookDataContainer: {
@@ -25,17 +25,17 @@ const styles = StyleSheet.create({
     fontFamily: fonts.sfLight,
     fontSize: 15,
     lineHeight: 18,
-    color: colors.tundora
+    color: tundora
   },
   title: {
     fontSize: 24,
     lineHeight: 29,
     textAlign: 'left',
-    color: colors.tundora
+    color: tundora
   },
   bookAvailable: {
     fontFamily: fonts.sfBold,
-    color: colors.atlantis,
+    color: atlantis,
     fontSize: 15,
     lineHeight: 18,
     textAlign: 'left'

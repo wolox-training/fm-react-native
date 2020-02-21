@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../../../../../constants/colors';
+import  { turquoise, white, cerulean } from '../../../../../constants/colors';
 import fonts from '../../../../../constants/fonts';
 
 const BUTTON_BORDER_RADIUS = 100;
@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     marginHorizontal: LARGE_MARGIN,
     marginBottom: STANDARD_MARGIN,
     width: BUTTON_WIDTH,
-    borderColor: colors.turquoise,
-    backgroundColor: colors.white
+    borderColor: turquoise,
+    backgroundColor: white
   },
   solidButton: {
     justifyContent: 'center',
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
     marginHorizontal: LARGE_MARGIN,
     marginBottom: STANDARD_MARGIN,
     width: BUTTON_WIDTH,
-    borderColor: colors.turquoise,
-    backgroundColor: colors.cerulean
+    borderColor: turquoise,
+    backgroundColor: cerulean
   },
   shallowButtonText: {
     fontFamily: fonts.sfHeavy,
-    color: colors.cerulean,
+    color: cerulean,
     fontSize: 15,
     fontWeight: 'bold',
     lineHeight: 19,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   },
   solidButtonText: {
     fontFamily: fonts.sfHeavy,
-    color: colors.white,
+    color: white,
     fontSize: 15,
     fontWeight: 'bold',
     lineHeight: 19,

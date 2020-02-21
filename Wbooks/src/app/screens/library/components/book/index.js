@@ -20,7 +20,7 @@ class Book extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={styles.bookContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.cover} />
+          <Image source={{ uri: imageUrl ? imageUrl : '' }} style={styles.cover} />
           <View style={styles.descriptionContainer}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.author}>{author}</Text>
