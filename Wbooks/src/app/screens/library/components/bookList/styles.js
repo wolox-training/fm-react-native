@@ -1,14 +1,14 @@
 import { StyleSheet } from 'react-native';
 
-import colors from './colors';
+import { polar, tundora } from '../../../../../constants/colors';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.listBackground,
+    backgroundColor: polar,
     paddingTop: 16,
     borderRadius: 5,
     shadowOffset: { width: 0, height: 1 },
-    shadowColor: colors.itemsShadow
+    shadowColor: tundora
   }
 });
 

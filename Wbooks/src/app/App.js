@@ -9,12 +9,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import BookListContainer from './screens/library/components/bookList/index';
-import mockData from './mocklist.json';
+import Navigator from './screens/navigator';
 
 const App: () => React$Node = () => (
   <NavigationContainer>
-    <BookListContainer bookList={mockData} />
+    <Navigator />
   </NavigationContainer>
 );
 
