@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import bookModel from '../../../../proptypes/bookModel';
+import BookActions from '../../../../../redux/book/actions';
 
 import styles from './styles';
 
 class Book extends Component {
-  handlePress = () => {
-    const { navigation, book } = this.props;
-    navigation.navigate('BookDetail', { navigation, book });
-  };
+  handlePress = () => this.props.onPress(this.props.book);
 
   render() {
     const {
@@ -31,11 +30,22 @@ class Book extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  bookDetail: state.bookDetail
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loadBook: book => dispatch(BookActions.loadBookDetails(book))
+  };
+}
+
 Book.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired
   }).isRequired,
-  book: PropTypes.shape(bookModel)
+  book: PropTypes.shape(bookModel),
+  onPress: PropTypes.func
 };
 
-export default Book;
+export default connect(mapStateToProps, mapDispatchToProps)(Book);

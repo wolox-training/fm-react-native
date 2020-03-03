@@ -5,10 +5,14 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-function BookDetailButton({ solid, title }) {
+function BookDetailButton({ solid, title, onPress }) {
   return (
     <View style={solid ? styles.solidButton : styles.shallowButton}>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          onPress();
+        }}
+      >
         <Text style={solid ? styles.solidButtonText : styles.shallowButtonText}>{title}</Text>
       </TouchableOpacity>
     </View>
