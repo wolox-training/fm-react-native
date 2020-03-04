@@ -5,7 +5,7 @@ import { actionTypes } from './actions';
 const initialState = {
   bookDetail: null,
   bookList: [],
-  wishlist: [],
+  wishList: [],
   rentedBooks: []
 };
 
@@ -13,20 +13,22 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.LOAD_BOOK_DETAILS:
       return {
+        ...state,
         bookDetail: action.payload.book
       };
-
     case actionTypes.ADD_TO_WISHLIST:
       return {
-        wishlist: wishlist.push(action.payload.book)
+        ...state,
+        wishList: [...state.wishList, action.payload.book]
       };
     case actionTypes.GET_BOOK_LIST:
       return {
+        ...state,
         bookList: mockData
       };
     case actionTypes.RENT_BOOK:
       return {
-        rentedBooks: rentedBooks.push(action.payload.book)
+        rentedBooks: state.rentedBooks.push(action.payload.book)
       };
     default:
       return state;
