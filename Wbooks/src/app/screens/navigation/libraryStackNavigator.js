@@ -9,7 +9,7 @@ import routes from './routes';
 
 const Stack = createStackNavigator();
 
-function StackNavigator() {
+function LibraryStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -26,4 +26,4 @@ function StackNavigator() {
   );
 }
 
-export default StackNavigator;
+export default LibraryStackNavigator;
