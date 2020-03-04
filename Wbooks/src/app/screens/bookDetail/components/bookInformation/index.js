@@ -11,7 +11,11 @@ import styles from './styles';
 
 class BookInformation extends Component {
   handleRentBook = () => {
-    console.log(this.props);
+    this.props.rentBook(this.props.bookDetail);
+  };
+
+  handleAddBookToWishlist = () => {
+    this.props.addToWishlist(this.props.bookDetail);
   };
 
   render() {
@@ -38,7 +42,7 @@ class BookInformation extends Component {
             <Text style={styles.description}>{genre}</Text>
           </View>
         </View>
-        <BookDetailButton title="ADD TO WISHLIST" onPress={() => this.handleRentBook()} />
+        <BookDetailButton title="ADD TO WISHLIST" onPress={this.handleAddBookToWishlist} />
         <BookDetailButton solid title="RENT" onPress={this.handleRentBook} />
       </View>
     );
@@ -59,9 +63,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 BookInformation.propTypes = {
+  addToWishlist: PropTypes.func,
   available: PropTypes.bool,
   bookDetail: PropTypes.shape(bookModel),
   genre: PropTypes.string,
+  rentBook: PropTypes.func,
   title: PropTypes.string,
   year: PropTypes.string
 };
