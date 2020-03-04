@@ -1,16 +1,20 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../../../../../constants/colors';
-import fonts from '../../../../../constants/fonts';
+import { tundora, black2 } from '../../../../../constants/colors/';
+import { sfLight, sfBold } from '../../../../../constants/fonts/';
+
+const MEDIUM_MARGIN = 20;
+const STANDARD_MARGIN = 15;
+const STANDARD_FONT_SIZE = 15;
 
 const styles = StyleSheet.create({
   comment: {
-    fontFamily: fonts.sfLight,
-    fontSize: 15,
+    fontFamily: sfLight,
+    fontSize: STANDARD_FONT_SIZE,
     lineHeight: 18,
-    marginRight: 18,
+    marginRight: STANDARD_MARGIN,
     textAlign: 'left',
-    color: colors.tundora
+    color: tundora
   },
   reviewContainer: {
     flexDirection: 'row',
@@ -20,21 +24,21 @@ const styles = StyleSheet.create({
     width: 45,
     height: 45,
     borderRadius: 50,
-    marginVertical: 15,
-    marginRight: 20,
-    marginLeft: 15
+    marginVertical: STANDARD_MARGIN,
+    marginRight: MEDIUM_MARGIN,
+    marginLeft: STANDARD_MARGIN
   },
   textContainer: {
     flexDirection: 'column',
-    marginTop: 15
+    marginTop: STANDARD_MARGIN
   },
   username: {
-    color: colors.black2,
-    fontSize: 15,
-    fontFamily: fonts.sfBold,
+    color: black2,
+    fontSize: STANDARD_FONT_SIZE,
+    fontFamily: sfBold,
     fontWeight: 'bold',
     lineHeight: 18,
-    marginRight: 26,
+    marginRight: 25,
     marginBottom: 3,
     textAlign: 'left'
   }

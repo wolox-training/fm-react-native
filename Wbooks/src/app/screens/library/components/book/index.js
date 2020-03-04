@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 
+import routes from '../../../routes';
 import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
@@ -9,7 +10,7 @@ import styles from './styles';
 class Book extends Component {
   handlePress = () => {
     const { navigation, book } = this.props;
-    navigation.navigate('BookDetail', { navigation, book });
+    navigation.navigate(routes.bookDetail, { navigation, book });
   };
 
   render() {
@@ -20,7 +21,7 @@ class Book extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={styles.bookContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.cover} />
+          <Image source={{ uri: imageUrl ? imageUrl : '' }} style={styles.cover} />
           <View style={styles.descriptionContainer}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.author}>{author}</Text>
