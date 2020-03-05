@@ -4,7 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { defaultNavOptions } from '../../../config/navigationOptions';
 import dummyScreenContainer from '../dummyScreen';
 
-import StackNavigator from './stackNavigator';
+import StackNavigator from './libraryStackNavigator';
+import MyRentalsStackNavigator from './myRentalsStackNavigator';
 import TabBarIcon from './components/tabBarIcon';
 import routes from './routes';
 
@@ -39,7 +40,7 @@ export default function TabNavigator() {
       />
       <Tab.Screen
         name={routes.Rental}
-        component={dummyScreenContainer}
+        component={MyRentalsStackNavigator}
         options={{
           tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} route={routes.Rental} />
         }}

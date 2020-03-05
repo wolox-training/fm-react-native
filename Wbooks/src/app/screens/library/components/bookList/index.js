@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { FlatList, View } from 'react-native';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useNavigationState } from '@react-navigation/native';
 
 import Book from '../book/index';
 import BookActions from '../../../../../redux/book/actions';
@@ -9,33 +10,36 @@ import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
 
-class BookListContainer extends Component {
-  handlePress = item => {
-    const { navigation, loadBook } = this.props;
-    loadBook(item);
-    navigation.navigate('BookDetail', { navigation });
-  };
+function BookListContainer({ navigation, bookList }) {
+  const dispatch = useDispatch();
+  const navigationState = useNavigationState(state => state);
+  const isCart = navigationState.routes[navigationState.index].name === 'MyRentals';
+  const handlePress = useCallback(
+    item => {
+      dispatch(BookActions.loadBookDetails(item));
+      navigation.navigate('BookDetail', { navigation, isCart });
+    },
+    [dispatch, isCart, navigation]
+  );
 
-  renderItem = ({ item }) => <Book book={item} onPress={this.handlePress} />;
+  const renderItem = useCallback(({ item }) => <Book book={item} onPress={handlePress} />, [handlePress]);
 
-  keyExtractor = item => item.id.toString();
+  const keyExtractor = ({ id }) => id.toString();
 
-  componentDidMount() {
-    this.props.getBookList(BookActions.getBookList());
-  }
+  useEffect(() => {
+    dispatch(BookActions.getBookList());
+  }, [dispatch]);
 
-  render() {
-    return (
-      <View>
-        <FlatList
-          style={styles.container}
-          data={this.props.bookList}
-          renderItem={this.renderItem}
-          keyExtractor={this.keyExtractor}
-        />
-      </View>
-    );
-  }
+  return (
+    <View>
+      <FlatList
+        style={styles.container}
+        data={bookList}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+      />
+    </View>
+  );
 }
 
 const mapStateToProps = state => ({
@@ -43,18 +47,9 @@ const mapStateToProps = state => ({
   bookDetail: state.bookReducer.bookDetail
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getBookList: () => dispatch(BookActions.getBookList()),
-    loadBook: book => dispatch(BookActions.loadBookDetails(book))
-  };
-}
-
 BookListContainer.propTypes = {
   bookList: PropTypes.arrayOf(bookModel),
-  getBookList: PropTypes.func,
-  loadBook: PropTypes.func,
   navigation: PropTypes.func
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookListContainer);
+export default connect(mapStateToProps)(BookListContainer);
