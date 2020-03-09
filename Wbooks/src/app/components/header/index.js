@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { ImageBackground, View, Text, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 

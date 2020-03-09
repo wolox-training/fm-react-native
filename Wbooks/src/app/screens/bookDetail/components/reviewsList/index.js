@@ -10,7 +10,7 @@ import styles from './styles';
 class ReviewsList extends Component {
   renderItem = ({ item }) => <Review review={item} />;
 
-  keyExtractor = item => item.id.toString();
+  keyExtractor = item => `${item.id}`;
 
   render() {
     const { reviews } = this.props;

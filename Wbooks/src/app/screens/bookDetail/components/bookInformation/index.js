@@ -9,6 +9,7 @@ import styles from './styles';
 
 function BookInformation({ handleRentBook, addToWishList, bookDetail, available, isCart }) {
   const { image_url: imageUrl, title, author, genre, year } = bookDetail;
+
   return (
     <View style={styles.bookInfoContainer}>
       <View style={styles.bookDataContainer}>
@@ -22,7 +23,7 @@ function BookInformation({ handleRentBook, addToWishList, bookDetail, available,
           <Text style={styles.title} ellipsizeMode="tail">
             {title}
           </Text>
-          <Text style={available ? styles.bookAvailable : styles.bookAvailable}>
+          <Text style={available ? styles.bookAvailable : styles.bookUnavailable}>
             {available ? 'Available' : 'Not Available'}
           </Text>
           <Text style={styles.description}>{author}</Text>
@@ -38,10 +39,10 @@ function BookInformation({ handleRentBook, addToWishList, bookDetail, available,
 
 BookInformation.propTypes = {
   addToWishList: PropTypes.func,
+  author: PropTypes.string,
   available: PropTypes.bool,
   bookDetail: PropTypes.shape(bookModel),
   genre: PropTypes.string,
-  rentBook: PropTypes.func,
   title: PropTypes.string,
   year: PropTypes.string
 };

@@ -21,6 +21,7 @@ const tabIconsOn = {
   [Routes.Rental]: rentalIconOn,
   [Routes.Settings]: settingsIconOn
 };
+
 const tabIconsOff = {
   [Routes.Library]: librarIconOff,
   [Routes.WishList]: wishListIconOff,
@@ -28,11 +29,14 @@ const tabIconsOff = {
   [Routes.Rental]: rentalIconOff,
   [Routes.Settings]: settingsIconOff
 };
+
 function TabBarIcon({ route, focused }) {
   return <Image source={focused ? tabIconsOn[route] : tabIconsOff[route]} resizeMode="center" />;
 }
+
 TabBarIcon.propTypes = {
   route: PropTypes.string.isRequired,
   focused: PropTypes.bool
 };
+
 export default TabBarIcon;

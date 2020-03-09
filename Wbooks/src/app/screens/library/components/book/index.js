@@ -3,6 +3,7 @@ import { View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import routes from '../../../routes';
 import bookModel from '../../../../proptypes/bookModel';
 import BookActions from '../../../../../redux/book/actions';
 
@@ -19,7 +20,7 @@ class Book extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={styles.bookContainer}>
-          <Image source={{ uri: imageUrl }} style={styles.cover} />
+          <Image source={{ uri: imageUrl ? imageUrl : '' }} style={styles.cover} />
           <View style={styles.descriptionContainer}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.author}>{author}</Text>
