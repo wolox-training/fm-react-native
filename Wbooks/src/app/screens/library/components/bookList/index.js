@@ -10,7 +10,7 @@ import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
 
-function BookListContainer({ navigation, bookList }) {
+function BookListContainer({ navigation, bookList, rentedBooks }) {
   const dispatch = useDispatch();
   const navigationState = useNavigationState(state => state);
   const isCart = navigationState.routes[navigationState.index].name === 'MyRentals';
@@ -27,14 +27,14 @@ function BookListContainer({ navigation, bookList }) {
   const keyExtractor = ({ id }) => id.toString();
 
   useEffect(() => {
-    dispatch(BookActions.getBookList());
-  }, [dispatch]);
+    isCart ? dispatch(BookActions.getRentedBooks()) : dispatch(BookActions.getBookList());
+  }, [dispatch, isCart]);
 
   return (
     <View>
       <FlatList
         style={styles.container}
-        data={bookList}
+        data={isCart ? rentedBooks : bookList}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
       />
@@ -44,7 +44,8 @@ function BookListContainer({ navigation, bookList }) {
 
 const mapStateToProps = state => ({
   bookList: state.bookReducer.bookList,
-  bookDetail: state.bookReducer.bookDetail
+  bookDetail: state.bookReducer.bookDetail,
+  rentedBooks: state.bookReducer.rentedBooks
 });
 
 BookListContainer.propTypes = {

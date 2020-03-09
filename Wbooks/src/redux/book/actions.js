@@ -1,6 +1,7 @@
 export const actionTypes = {
   LOAD_BOOK_DETAILS: 'LOAD_BOOK_DETAILS',
   GET_BOOK_LIST: 'GET_BOOK_LIST',
+  GET_RENTED_BOOKS: 'GET_RENTED_BOOKS',
   ADD_TO_WISHLIST: 'ADD_BOOK_TO_WISHLIST',
   RENT_BOOK: 'RENT_BOOK',
   RETURN_BOOK: 'RETURN_BOOK',
@@ -17,6 +18,9 @@ const BookActions = {
   getBookList: () => ({
     type: actionTypes.GET_BOOK_LIST
   }),
+  getRentedBooks: () => ({
+    type: actionTypes.GET_RENTED_BOOKS
+  }),
   addToWishList: book => ({
     type: actionTypes.ADD_TO_WISHLIST,
     payload: {
@@ -30,7 +34,7 @@ const BookActions = {
     }
   }),
   returnBook: book => ({
-    type: actionTypes.RENT_BOOK,
+    type: actionTypes.RETURN_BOOK,
     payload: {
       book
     }

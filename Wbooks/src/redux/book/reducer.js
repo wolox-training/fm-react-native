@@ -21,6 +21,10 @@ function reducer(state = initialState, action) {
         ...state,
         wishList: [...state.wishList, action.payload.book]
       };
+    case actionTypes.GET_RENTED_BOOKS:
+      return {
+        ...state
+      };
     case actionTypes.GET_BOOK_LIST:
       return {
         ...state,
@@ -30,6 +34,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         rentedBooks: [...state.rentedBooks, action.payload.book]
+      };
+    case actionTypes.RETURN_BOOK:
+      return {
+        ...state,
+        rentedBooks: state.rentedBooks.filter(({ id }) => action.payload.book.id !== id)
       };
     default:
       return state;
