@@ -28,7 +28,8 @@ function reducer(state = initialState, action) {
       };
     case actionTypes.RENT_BOOK:
       return {
-        rentedBooks: state.rentedBooks.push(action.payload.book)
+        ...state,
+        rentedBooks: [...state.rentedBooks, action.payload.book]
       };
     default:
       return state;

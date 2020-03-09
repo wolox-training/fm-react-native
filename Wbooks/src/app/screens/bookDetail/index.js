@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
@@ -12,21 +12,38 @@ import styles from './styles';
 import ReviewsList from './components/reviewsList';
 import reviewsMock from './reviewsmock.json';
 
-function BookDetailContainer({ route, bookDetail }) {
-  const { isCart } = route.params;
-  const reviews = reviewsMock;
-  return (
-    <ScrollView style={styles.bookDetailContainer}>
-      <BookInformation bookDetail={bookDetail} isCart={isCart} />
-      <ReviewsList reviews={reviews} />
-    </ScrollView>
-  );
+class BookDetailContainer extends Component {
+  handleRentBook = () => {
+    console.log('click');
+    this.props.rentBook(this.props.bookDetail);
+  };
+
+  handleAddBookToWishList = () => {
+    this.props.addToWishList(this.props.bookDetail);
+  };
+
+  render() {
+    const { route, bookDetail } = this.props;
+    const { isCart } = route.params;
+    const reviews = reviewsMock;
+    return (
+      <ScrollView style={styles.bookDetailContainer}>
+        <BookInformation
+          bookDetail={bookDetail}
+          isCart={isCart}
+          handleRentBook={this.handleRentBook}
+          addToWishList={this.handleAddBookToWishList}
+        />
+        <ReviewsList reviews={reviews} />
+      </ScrollView>
+    );
+  }
 }
 
 const mapStateToProps = state => ({
   bookDetail: state.bookReducer.bookDetail,
-  rentedBooks: state.bookReducer.rentedBooks,
-  whishList: state.bookReducer.wishList
+  rentedBooks: state.rentedBooks,
+  whishList: state.wishList
 });
 
 function mapDispatchToProps(dispatch) {
