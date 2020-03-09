@@ -24,7 +24,6 @@ class BookDetailContainer extends Component {
   hanldeButton2 = () => {
     const { route, returnBook, bookDetail, rentBook } = this.props;
     const { isCart } = route.params;
-    console.log(isCart);
     if (isCart) {
       returnBook(bookDetail);
     } else {
