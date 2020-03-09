@@ -24,7 +24,7 @@ function BookListContainer({ navigation, bookList, rentedBooks }) {
 
   const renderItem = useCallback(({ item }) => <Book book={item} onPress={handlePress} />, [handlePress]);
 
-  const keyExtractor = ({ id }) => id.toString();
+  const keyExtractor = ({ id }) => `${id}`;
 
   useEffect(() => {
     isCart ? dispatch(BookActions.getRentedBooks()) : dispatch(BookActions.getBookList());
@@ -49,8 +49,8 @@ const mapStateToProps = state => ({
 });
 
 BookListContainer.propTypes = {
-  bookList: PropTypes.arrayOf(bookModel),
-  navigation: PropTypes.func
+  bookList: PropTypes.arrayOf(bookModel).isRequired,
+  navigation: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(BookListContainer);

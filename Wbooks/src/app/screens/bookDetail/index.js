@@ -12,23 +12,24 @@ import ReviewsList from './components/reviewsList';
 import reviewsMock from './reviewsmock.json';
 
 class BookDetailContainer extends Component {
-  handleButton1 = () => {
-    const { isCart, addComment, bookDetail, addToWishList } = this.props;
-    if (isCart) {
-      addComment(bookDetail);
-    } else {
-      addToWishList(bookDetail);
-    }
+  handleAddComment = () => {
+    const { addComment, bookDetail } = this.props;
+    addComment(bookDetail);
   };
 
-  hanldeButton2 = () => {
-    const { route, returnBook, bookDetail, rentBook } = this.props;
-    const { isCart } = route.params;
-    if (isCart) {
-      returnBook(bookDetail);
-    } else {
-      rentBook(bookDetail);
-    }
+  handleAddToWishList = () => {
+    const { bookDetail, addToWishList } = this.props;
+    addToWishList(bookDetail);
+  };
+
+  handleRentBook = () => {
+    const { bookDetail, rentBook } = this.props;
+    rentBook(bookDetail);
+  };
+
+  handleReturnBook = () => {
+    const { returnBook, bookDetail } = this.props;
+    returnBook(bookDetail);
   };
 
   render() {
@@ -41,8 +42,8 @@ class BookDetailContainer extends Component {
           bookDetail={bookDetail}
           isCart={isCart}
           isRented={isRented}
-          onPressButton1={this.handleButton1}
-          onPressButton2={this.hanldeButton2}
+          onPressButton1={isCart ? this.handleAddComment : this.handleAddToWishList}
+          onPressButton2={isCart ? this.handleReturnBook : this.handleRentBook}
         />
         <ReviewsList reviews={reviews} />
       </ScrollView>
@@ -52,7 +53,7 @@ class BookDetailContainer extends Component {
 
 const mapStateToProps = state => {
   const { bookDetail, wishList, rentedBooks } = state.bookReducer;
-  const isRented = rentedBooks.filter(({ id }) => id === bookDetail.id).length > 0;
+  const isRented = rentedBooks.some(({ id }) => id === bookDetail.id).length > 0;
   return {
     bookDetail,
     isRented,

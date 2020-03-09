@@ -12,7 +12,6 @@ import routes from './routes';
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
-  console.tron.log('hola');
   return (
     <Tab.Navigator>
       <Tab.Screen

@@ -13,8 +13,6 @@ import store from '../redux/store';
 
 import TabNavigator from './screens/navigation/tabsNavigator';
 
-import('../config/reactotronConfig').then(() => console.log('Reactotron Configured'));
-
 const App: () => React$Node = () => (
   <Provider store={store}>
     <NavigationContainer>
