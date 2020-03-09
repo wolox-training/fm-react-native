@@ -4,7 +4,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 
 import bookModel from '../../proptypes/bookModel';
-import reviewModel from '../../proptypes/reviewModel';
 import BookActions from '../../../redux/book/actions';
 
 import BookInformation from './components/bookInformation';
@@ -13,17 +12,27 @@ import ReviewsList from './components/reviewsList';
 import reviewsMock from './reviewsmock.json';
 
 class BookDetailContainer extends Component {
-  handleRentBook = () => {
-    console.log('click');
-    this.props.rentBook(this.props.bookDetail);
+  handleButton1 = () => {
+    const { isCart, addComment, bookDetail, addToWishList } = this.props;
+    if (isCart) {
+      addComment(bookDetail);
+    } else {
+      addToWishList(bookDetail);
+    }
   };
 
-  handleAddBookToWishList = () => {
-    this.props.addToWishList(this.props.bookDetail);
+  hanldeButton2 = () => {
+    const { isCart, returnBook, bookDetail, rentBook } = this.props;
+
+    if (isCart) {
+      returnBook(bookDetail);
+    } else {
+      rentBook(bookDetail);
+    }
   };
 
   render() {
-    const { route, bookDetail } = this.props;
+    const { route, bookDetail, isRented } = this.props;
     const { isCart } = route.params;
     const reviews = reviewsMock;
     return (
@@ -31,8 +40,9 @@ class BookDetailContainer extends Component {
         <BookInformation
           bookDetail={bookDetail}
           isCart={isCart}
-          handleRentBook={this.handleRentBook}
-          addToWishList={this.handleAddBookToWishList}
+          isRented={isRented}
+          onPressButton1={this.handleButton1}
+          onPressButton2={this.hanldeButton2}
         />
         <ReviewsList reviews={reviews} />
       </ScrollView>
@@ -40,16 +50,22 @@ class BookDetailContainer extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  bookDetail: state.bookReducer.bookDetail,
-  rentedBooks: state.rentedBooks,
-  whishList: state.wishList
-});
+const mapStateToProps = state => {
+  const { bookDetail, wishList, rentedBooks } = state.bookReducer;
+  const isRented = rentedBooks.filter(({ id }) => id === bookDetail.id).length > 0;
+  return {
+    bookDetail,
+    isRented,
+    wishList
+  };
+};
 
 function mapDispatchToProps(dispatch) {
   return {
     addToWishList: book => dispatch(BookActions.addToWishList(book)),
-    rentBook: book => dispatch(BookActions.rentBook(book))
+    rentBook: book => dispatch(BookActions.rentBook(book)),
+    returnBook: book => dispatch(BookActions.returnBook(book)),
+    addComment: book => dispatch(BookActions.addComment(book))
   };
 }
 
@@ -57,7 +73,11 @@ BookDetailContainer.propTypes = {
   route: PropTypes.shape({
     params: PropTypes.func.isRequired
   }).isRequired,
-  book: PropTypes.shape(bookModel),
-  reviews: PropTypes.arrayOf(PropTypes.shape(reviewModel))
+  addComment: PropTypes.func,
+  addToWishList: PropTypes.func,
+  bookDetail: PropTypes.shape(bookModel),
+  isCart: PropTypes.bool,
+  rentBook: PropTypes.func,
+  returnBook: PropTypes.func
 };
 export default connect(mapStateToProps, mapDispatchToProps)(BookDetailContainer);

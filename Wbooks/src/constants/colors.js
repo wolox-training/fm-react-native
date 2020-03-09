@@ -2,6 +2,8 @@ export const polar = '#EAF6FA';
 
 export const black2 = '#030303';
 
+export const grey = '#E4E4E4';
+
 export const black = '#000000';
 
 export const tundora = '#4A4A4A';

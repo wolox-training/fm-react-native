@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { tundora, black2 } from '../../../../../constants/colors/';
-import { sfLight, sfBold } from '../../../../../constants/fonts/';
+import { SF_BOLD, SF_LIGHT } from '../../../../../constants/fonts';
 
 const MEDIUM_MARGIN = 20;
 const STANDARD_MARGIN = 15;
@@ -9,7 +9,7 @@ const STANDARD_FONT_SIZE = 15;
 
 const styles = StyleSheet.create({
   comment: {
-    fontFamily: sfLight,
+    fontFamily: SF_LIGHT,
     fontSize: STANDARD_FONT_SIZE,
     lineHeight: 18,
     marginRight: STANDARD_MARGIN,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   username: {
     color: black2,
     fontSize: STANDARD_FONT_SIZE,
-    fontFamily: sfBold,
+    fontFamily: SF_BOLD,
     fontWeight: 'bold',
     lineHeight: 18,
     marginRight: 25,

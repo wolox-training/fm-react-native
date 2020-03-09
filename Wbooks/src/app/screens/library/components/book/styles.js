@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import fonts from '../../../../../constants/fonts';
+import { SF_BOLD, SF_LIGHT } from '../../../../../constants/fonts';
 import { black, white } from '../../../../../constants/colors';
 
 const LARGE_MARGIN = 30;
@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   author: {
     fontSize: 15,
     lineHeight: 18,
-    fontFamily: fonts.sfBold,
+    fontFamily: SF_BOLD,
     fontWeight: '300',
     letterSpacing: -0.24,
     marginRight: 25,
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   title: {
     color: black,
     fontSize: 17,
-    fontFamily: fonts.sfLight,
+    fontFamily: SF_LIGHT,
     fontWeight: 'bold',
     letterSpacing: -0.41,
     lineHeight: 20,

@@ -3,7 +3,6 @@ import { View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import routes from '../../../routes';
 import bookModel from '../../../../proptypes/bookModel';
 import BookActions from '../../../../../redux/book/actions';
 

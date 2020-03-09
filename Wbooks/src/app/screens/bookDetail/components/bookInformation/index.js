@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -7,9 +7,9 @@ import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
 
-function BookInformation({ handleRentBook, addToWishList, bookDetail, available, isCart }) {
+function BookInformation({ onPressButton2, onPressButton1, bookDetail, available, isCart, isRented }) {
   const { image_url: imageUrl, title, author, genre, year } = bookDetail;
-
+  const disableButton = !isCart && isRented;
   return (
     <View style={styles.bookInfoContainer}>
       <View style={styles.bookDataContainer}>
@@ -31,14 +31,18 @@ function BookInformation({ handleRentBook, addToWishList, bookDetail, available,
           <Text style={styles.description}>{genre}</Text>
         </View>
       </View>
-      <BookDetailButton title={isCart ? 'ADD A COMMENT' : 'ADD TO WISHLIST'} onPress={addToWishList} />
-      <BookDetailButton solid title={isCart ? 'RETURN BOOK' : 'RENT'} onPress={handleRentBook} />
+      <BookDetailButton title={isCart ? 'ADD A COMMENT' : 'ADD TO WISHLIST'} onPress={onPressButton1} />
+      <BookDetailButton
+        solid
+        title={isCart ? 'RETURN BOOK' : 'RENT'}
+        onPress={onPressButton2}
+        disableButton={!!disableButton}
+      />
     </View>
   );
 }
 
 BookInformation.propTypes = {
-  addToWishList: PropTypes.func,
   author: PropTypes.string,
   available: PropTypes.bool,
   bookDetail: PropTypes.shape(bookModel),

@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 import { tundora, atlantis, white } from '../../../../../constants/colors';
-import fonts from '../../../../../constants/fonts';
+import { SF_BOLD, SF_LIGHT } from '../../../../../constants/fonts';
 
 const styles = StyleSheet.create({
   bookInfoContainer: {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginRight: 20
   },
   description: {
-    fontFamily: fonts.sfLight,
+    fontFamily: SF_LIGHT,
     fontSize: 15,
     lineHeight: 18,
     color: tundora
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     color: tundora
   },
   bookAvailable: {
-    fontFamily: fonts.sfBold,
+    fontFamily: SF_BOLD,
     color: atlantis,
     fontSize: 15,
     lineHeight: 18,
