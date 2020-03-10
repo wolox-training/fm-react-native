@@ -42,8 +42,8 @@ class BookDetailContainer extends Component {
           bookDetail={bookDetail}
           isCart={isCart}
           isRented={isRented}
-          onPressButton1={isCart ? this.handleAddComment : this.handleAddToWishList}
-          onPressButton2={isCart ? this.handleReturnBook : this.handleRentBook}
+          onPressButtonAdd={isCart ? this.handleAddComment : this.handleAddToWishList}
+          onPressButtonBookStatus={isCart ? this.handleReturnBook : this.handleRentBook}
         />
         <ReviewsList reviews={reviews} />
       </ScrollView>
@@ -53,7 +53,7 @@ class BookDetailContainer extends Component {
 
 const mapStateToProps = state => {
   const { bookDetail, wishList, rentedBooks } = state.bookReducer;
-  const isRented = rentedBooks.some(({ id }) => id === bookDetail.id).length > 0;
+  const isRented = rentedBooks.some(({ id }) => id === bookDetail.id);
   return {
     bookDetail,
     isRented,
