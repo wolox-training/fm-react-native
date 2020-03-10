@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import colors from '../../../constants/colors';
+import { polar, white } from '../../../constants/colors';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.polar
+    backgroundColor: polar
   },
   image: {
     flexDirection: 'row',
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 17,
-    color: colors.white,
+    color: white,
     lineHeight: 20,
     marginTop: 20,
     justifyContent: 'center'

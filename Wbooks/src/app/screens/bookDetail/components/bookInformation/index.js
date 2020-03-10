@@ -7,8 +7,16 @@ import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
 
-function BookInformation({ book: { image_url: imageUrl, title, author, genre, year }, available }) {
-  console.log(available);
+function BookInformation({
+  onPressButtonBookStatus,
+  onPressButtonAdd,
+  bookDetail,
+  available,
+  isCart,
+  isRented
+}) {
+  const { image_url: imageUrl, title, author, genre, year } = bookDetail;
+  const disableButton = !isCart && isRented;
   return (
     <View style={styles.bookInfoContainer}>
       <View style={styles.bookDataContainer}>
@@ -30,8 +38,13 @@ function BookInformation({ book: { image_url: imageUrl, title, author, genre, ye
           <Text style={styles.description}>{genre}</Text>
         </View>
       </View>
-      <BookDetailButton title="ADD TO WISHLIST" />
-      <BookDetailButton solid title="RENT" />
+      <BookDetailButton title={isCart ? 'ADD A COMMENT' : 'ADD TO WISHLIST'} onPress={onPressButtonAdd} />
+      <BookDetailButton
+        solid
+        title={isCart ? 'RETURN BOOK' : 'RENT'}
+        onPress={onPressButtonBookStatus}
+        disableButton={!!disableButton}
+      />
     </View>
   );
 }
@@ -39,11 +52,14 @@ function BookInformation({ book: { image_url: imageUrl, title, author, genre, ye
 BookInformation.propTypes = {
   author: PropTypes.string,
   available: PropTypes.bool,
-  book: PropTypes.shape(bookModel),
+  bookDetail: PropTypes.shape(bookModel),
   genre: PropTypes.string,
-  imageUrl: PropTypes.string,
+  isCart: PropTypes.bool,
+  isRented: PropTypes.bool,
   title: PropTypes.string,
-  year: PropTypes.string
+  year: PropTypes.string,
+  onPressButtonAdd: PropTypes.func,
+  onPressButtonBookStatus: PropTypes.func
 };
 
 export default BookInformation;

@@ -1,26 +1,56 @@
-import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import React, { useEffect, useCallback } from 'react';
+import { FlatList, View } from 'react-native';
+import { connect, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useNavigationState } from '@react-navigation/native';
 
 import Book from '../book/index';
-import mockData from '../../../../mocklist.json';
+import BookActions from '../../../../../redux/book/actions';
+import bookModel from '../../../../proptypes/bookModel';
 
 import styles from './styles';
 
-class BookListContainer extends Component {
-  renderItem = ({ item }) => <Book book={item} navigation={this.props.navigation} />;
+function BookListContainer({ navigation, bookList, rentedBooks }) {
+  const dispatch = useDispatch();
+  const navigationState = useNavigationState(state => state);
+  const isCart = navigationState.routes[navigationState.index].name === 'MyRentals';
+  const handlePress = useCallback(
+    item => {
+      dispatch(BookActions.loadBookDetails(item));
+      navigation.navigate('BookDetail', { navigation, isCart });
+    },
+    [dispatch, isCart, navigation]
+  );
 
-  keyExtractor = item => item.id.toString();
+  const renderItem = useCallback(({ item }) => <Book book={item} onPress={handlePress} />, [handlePress]);
 
-  render() {
-    return (
+  const keyExtractor = ({ id }) => `${id}`;
+
+  useEffect(() => {
+    isCart ? dispatch(BookActions.getRentedBooks()) : dispatch(BookActions.getBookList());
+  }, [dispatch, isCart]);
+
+  return (
+    <View>
       <FlatList
         style={styles.container}
-        data={mockData}
-        renderItem={this.renderItem}
-        keyExtractor={this.keyExtractor}
+        data={isCart ? rentedBooks : bookList}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
       />
-    );
-  }
+    </View>
+  );
 }
 
-export default BookListContainer;
+const mapStateToProps = state => ({
+  bookList: state.bookReducer.bookList,
+  bookDetail: state.bookReducer.bookDetail,
+  rentedBooks: state.bookReducer.rentedBooks
+});
+
+BookListContainer.propTypes = {
+  bookList: PropTypes.arrayOf(bookModel).isRequired,
+  navigation: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps)(BookListContainer);
