@@ -1,5 +1,3 @@
-import mockData from '../../app/mocklist.json';
-
 import { actionTypes } from './actions';
 
 const initialState = {
@@ -25,10 +23,25 @@ function reducer(state = initialState, action) {
       return {
         ...state
       };
-    case actionTypes.GET_BOOK_LIST:
+    case actionTypes.GET_RENTED_BOOKS_SUCCESS:
       return {
         ...state,
-        bookList: mockData
+        rentedBooks: action.payload
+      };
+    case actionTypes.GET_RENTED_BOOKS_ERROR:
+      return {
+        ...state,
+        rentedBooks: []
+      };
+    case actionTypes.GET_BOOK_LIST_SUCCESS:
+      return {
+        ...state,
+        bookList: action.payload
+      };
+    case actionTypes.GET_BOOK_LIST_ERROR:
+      return {
+        ...state,
+        bookList: []
       };
     case actionTypes.RENT_BOOK:
       return {
