@@ -22,9 +22,7 @@ const BookActions = {
     }
   }),
   getBookList: () => async dispatch => {
-    dispatch({ type: actionTypes.GET_BOOK_LIST });
     const response = await BookService.getBookList();
-    console.log(response);
     if (response.ok) {
       dispatch({
         type: actionTypes.GET_BOOK_LIST_SUCCESS,
@@ -37,11 +35,9 @@ const BookActions = {
     }
   },
   getRentedBooks: () => async dispatch => {
-    dispatch({ type: actionTypes.GET_BOOK_LIST });
     const response = await BookService.getRentedBooks();
     if (response.ok) {
       const rentedBooks = response.data.page.map(rental => rental.book);
-      console.log(rentedBooks);
       dispatch({
         type: actionTypes.GET_RENTED_BOOKS_SUCCESS,
         payload: rentedBooks
