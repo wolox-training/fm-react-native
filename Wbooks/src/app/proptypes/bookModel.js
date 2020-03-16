@@ -4,7 +4,7 @@ const bookModel = {
   author: string,
   genre: string,
   id: number,
-  image_url: string,
+  image: string,
   publisher: string,
   title: string,
   year: string

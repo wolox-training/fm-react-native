@@ -12,9 +12,9 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2751FC5C240051FA00FA2BCD /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2751FC59240051FA00FA2BCD /* SFUIText-Heavy.ttf */; };
-		2751FC5D240051FA00FA2BCD /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2751FC5A240051FA00FA2BCD /* SFUIText-Bold.ttf */; };
-		2751FC5E240051FA00FA2BCD /* SFUIText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2751FC5B240051FA00FA2BCD /* SFUIText-Light.ttf */; };
+		27D298FE241FE6D700681C2E /* SFUIText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27D298FB241FE6D700681C2E /* SFUIText-Light.ttf */; };
+		27D298FF241FE6D700681C2E /* SFUIText-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27D298FC241FE6D700681C2E /* SFUIText-Bold.ttf */; };
+		27D29900241FE6D700681C2E /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27D298FD241FE6D700681C2E /* SFUIText-Heavy.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -57,6 +57,9 @@
 		2751FC59240051FA00FA2BCD /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Heavy.ttf"; path = "../../../../Downloads/SFUIText-Heavy.ttf"; sourceTree = "<group>"; };
 		2751FC5A240051FA00FA2BCD /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Bold.ttf"; path = "../../../../Downloads/SFUIText-Bold.ttf"; sourceTree = "<group>"; };
 		2751FC5B240051FA00FA2BCD /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Light.ttf"; path = "../../../../Downloads/SFUIText-Light.ttf"; sourceTree = "<group>"; };
+		27D298FB241FE6D700681C2E /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Light.ttf"; path = "../src/app/assets/SFUIText-Light.ttf"; sourceTree = "<group>"; };
+		27D298FC241FE6D700681C2E /* SFUIText-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Bold.ttf"; path = "../src/app/assets/SFUIText-Bold.ttf"; sourceTree = "<group>"; };
+		27D298FD241FE6D700681C2E /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Heavy.ttf"; path = "../src/app/assets/SFUIText-Heavy.ttf"; sourceTree = "<group>"; };
 		2CE4FF426B349F42A84E1488 /* Pods-Wbooks-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wbooks-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-Wbooks-tvOSTests/Pods-Wbooks-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Wbooks-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wbooks-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Wbooks-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wbooks-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +170,10 @@
 			children = (
 				2751FC5A240051FA00FA2BCD /* SFUIText-Bold.ttf */,
 				2751FC59240051FA00FA2BCD /* SFUIText-Heavy.ttf */,
+				27D298FC241FE6D700681C2E /* SFUIText-Bold.ttf */,
+				27D298FD241FE6D700681C2E /* SFUIText-Heavy.ttf */,
 				2751FC5B240051FA00FA2BCD /* SFUIText-Light.ttf */,
+				27D298FB241FE6D700681C2E /* SFUIText-Light.ttf */,
 				13B07FAE1A68108700A75B9A /* Wbooks */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* WbooksTests */,
@@ -203,7 +209,6 @@
 				DB72D7C0FB748C821ACAE2AE /* Pods-WbooksTests.debug.xcconfig */,
 				32CF2CA3B513BB93353DEFFF /* Pods-WbooksTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -346,11 +351,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2751FC5E240051FA00FA2BCD /* SFUIText-Light.ttf in Resources */,
+				27D298FE241FE6D700681C2E /* SFUIText-Light.ttf in Resources */,
+				27D298FF241FE6D700681C2E /* SFUIText-Bold.ttf in Resources */,
+				27D29900241FE6D700681C2E /* SFUIText-Heavy.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				2751FC5C240051FA00FA2BCD /* SFUIText-Heavy.ttf in Resources */,
-				2751FC5D240051FA00FA2BCD /* SFUIText-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

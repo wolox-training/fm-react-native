@@ -13,13 +13,13 @@ class Book extends Component {
 
   render() {
     const {
-      book: { image_url: imageUrl, title, author }
+      book: { image, title, author }
     } = this.props;
 
     return (
       <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={styles.bookContainer}>
-          <Image source={{ uri: imageUrl ? imageUrl : '' }} style={styles.cover} />
+          <Image source={{ uri: image }} style={styles.cover} />
           <View style={styles.descriptionContainer}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.author}>{author}</Text>
