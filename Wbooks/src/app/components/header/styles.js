@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 
 import { polar, white } from '../../../constants/colors';
 
@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    height: 100
+    height: 100,
+    paddingTop: Platform.OS === 'ios' ? 20 : 0
   },
   title: {
     fontSize: 17,
