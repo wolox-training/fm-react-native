@@ -5,10 +5,12 @@ import Reactotron from '../config/reactotronConfig';
 
 import bookReducer from './book/reducer';
 import authReducer from './authentication/reducer';
+import navigationOptionsReducer from './navigationOptions/reducer';
 
 const reducers = {
   bookReducer,
-  authReducer
+  authReducer,
+  navigationOptionsReducer
 };
 
 const enhancers = [];

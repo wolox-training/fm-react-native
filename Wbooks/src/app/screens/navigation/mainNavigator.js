@@ -12,7 +12,7 @@ function LibraryStackNavigator() {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name={routes.LogIn} component={LogIn} />
-      <Stack.Screen name={routes.Home} component={Home} />
+      <Stack.Screen name={routes.Main} component={Home} />
     </Stack.Navigator>
   );
 }

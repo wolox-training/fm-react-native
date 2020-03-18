@@ -15,7 +15,7 @@ function LibraryStackNavigator() {
       <Stack.Screen
         name={routes.Library}
         component={Library}
-        options={defaultNavOptions('Notifications', 'Search', 'LIBRARY')}
+        options={defaultNavOptions('Logout', 'Search', 'LIBRARY')}
       />
       <Stack.Screen
         name={routes.BookDetail}

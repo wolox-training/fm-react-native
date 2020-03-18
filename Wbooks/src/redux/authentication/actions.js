@@ -1,26 +1,75 @@
+import { AsyncStorage } from 'react-native';
+
 import AuthenticationService from '../../services/AuthenticationService';
 
 export const actionTypes = {
   LOG_IN: 'LogIn',
   LOG_IN_SUCCESS: 'LogInSuccess',
   LOG_IN_ERROR: 'LogInError',
-  LOG_OUT: 'LogOut'
+  LOADING_ENABLED: 'LoadingEnabled',
+  LOADING_DISABLED: 'LoadingDisabled',
+  STORED_DATA_SUCESS: 'StoredDataSuccess'
 };
 
+const SESSION_DATA_KEY = 'sessionData';
+
 const AuthenticationActions = {
-  logIn: (email, password) => async dispatch => {
-    const response = await AuthenticationService.getBookList();
-    console.log(response);
-    if (response.ok) {
+  startUp: navigation => async dispatch => {
+    try {
+      const sessionData = await AsyncStorage.getItem('sessionData');
+      if (sessionData !== null) {
+        dispatch({
+          type: actionTypes.STORED_DATA_SUCESS,
+          payload: sessionData
+        });
+        navigation.navigate('Main');
+      }
+    } catch (error) {
       dispatch({
-        type: actionTypes.LOG_IN_SUCCESS,
-        payload: response
+        type: actionTypes.LOG_IN_ERROR
       });
+    }
+  },
+
+  logIn: (email, password, navigation) => async dispatch => {
+    dispatch({
+      type: actionTypes.LOADING_ENABLED
+    });
+    const response = await AuthenticationService.signIn(email, password);
+    if (response.ok) {
+      const { data: user } = response.data;
+      const sessionData = {
+        uid: user.uid,
+        accessToken: response.headers['access-token'],
+        email: user.email
+      };
+      try {
+        await AsyncStorage.setItem(SESSION_DATA_KEY, JSON.stringify(sessionData));
+        dispatch({
+          type: actionTypes.LOG_IN_SUCCESS,
+          payload: response
+        });
+        navigation.navigate('Main');
+      } catch (error) {
+        dispatch({
+          type: actionTypes.LOG_IN_ERROR
+        });
+      }
     } else {
       dispatch({
         type: actionTypes.LOG_IN_ERROR
       });
     }
+  },
+  logOut: () => async dispatch => {
+    dispatch({
+      type: actionTypes.LOADING_ENABLED
+    });
+    await AsyncStorage.removeItem(SESSION_DATA_KEY).then(() => {
+      dispatch({
+        type: actionTypes.LOG_OUT
+      });
+    });
   }
 };
 

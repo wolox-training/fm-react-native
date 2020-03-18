@@ -2,27 +2,24 @@ import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import { connect, useDispatch } from 'react-redux';
+import { compose } from 'redux';
 
 import AuthActions from '../../../redux/authentication/actions';
+import withLoadingScreen from '../../components/loading';
 
 import LogInScreen from './layout';
 
-function LogInContainer({ uid, navigation }) {
+function LogInContainer({ navigation }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (uid) {
-      return navigation.navigate('Home');
-    }
-    return null;
-  }, [dispatch, navigation, uid]);
-
+    dispatch(AuthActions.startUp(navigation));
+  }, [dispatch, navigation]);
   return (
     <Formik
       initialValues={{ email: '', password: '' }}
       onSubmit={({ email, password }) => {
-        console.log('submit');
-        dispatch(AuthActions.logIn(email, password));
+        dispatch(AuthActions.logIn(email, password, navigation));
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -38,7 +35,8 @@ function LogInContainer({ uid, navigation }) {
 }
 
 const mapStateToProps = state => ({
-  uid: state.authReducer.bookList
+  uid: state.authReducer.uid,
+  loading: state.authReducer.loading
 });
 
 LogInContainer.propTypes = {
@@ -46,4 +44,4 @@ LogInContainer.propTypes = {
   uid: PropTypes.string
 };
 
-export default connect(mapStateToProps)(LogInContainer);
+export default compose(connect(mapStateToProps), withLoadingScreen)(LogInContainer);
