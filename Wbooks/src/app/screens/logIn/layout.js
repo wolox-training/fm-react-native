@@ -3,35 +3,36 @@ import { TextInput, Button, Text, ImageBackground } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { white } from '../../../constants/colors';
+import background from '../../assets/bc_inicio.png';
 
 import styles from './styles';
 
-function LogInScreen({ handleChange, handleBlur, handleSubmit, values }) {
+function LogInScreen({ onHandleChange, onHandleBlur, onHandleSubmit, values }) {
   return (
-    <ImageBackground style={styles.logInContainer} source={require('./../../assets/bc_inicio.png')}>
+    <ImageBackground style={styles.logInContainer} source={background}>
       <Text style={styles.label}>Email</Text>
       <TextInput
         style={styles.textInput}
-        onChangeText={handleChange('email')}
-        onBlur={handleBlur('email')}
+        onChangeText={onHandleChange('email')}
+        onBlur={onHandleBlur('email')}
         value={values.email}
       />
       <Text style={styles.label}>Password</Text>
       <TextInput
         style={styles.textInput}
-        onChangeText={handleChange('password')}
-        onBlur={handleBlur('password')}
+        onChangeText={onHandleChange('password')}
+        onBlur={onHandleBlur('password')}
         value={values.password}
       />
-      <Button color={white} onPress={handleSubmit} title="LOG IN" />
+      <Button color={white} onPress={onHandleSubmit} title="LOG IN" />
     </ImageBackground>
   );
 }
 
 LogInScreen.propTypes = {
-  handleBlur: PropTypes.func,
-  handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
-  values: PropTypes.objectOf({ email: String, password: String })
+  values: PropTypes.objectOf({ email: String, password: String }),
+  onHandleBlur: PropTypes.func,
+  onHandleChange: PropTypes.func,
+  onHandleSubmit: PropTypes.func
 };
 export default LogInScreen;

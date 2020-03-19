@@ -24,9 +24,9 @@ function LogInContainer({ navigation }) {
     >
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <LogInScreen
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          handleSubmit={handleSubmit}
+          onHandleChange={handleChange}
+          onHandleBlur={handleBlur}
+          onHandleSubmit={handleSubmit}
           values={values}
         />
       )}

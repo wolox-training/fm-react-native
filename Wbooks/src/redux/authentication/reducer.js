@@ -36,9 +36,6 @@ function reducer(state = initialState, action) {
         email
       };
     }
-    case actionTypes.LOG_OUT:
-      return initialState;
-
     case actionTypes.LOG_IN_ERROR:
       return state;
 

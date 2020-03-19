@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ImageBackground, View, Text, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import NavigationActions from '../../../redux/navigationOptions/actions';
 
@@ -14,51 +15,42 @@ const Icons = {
   Logout: () => require('./assets/ic_logout.png')
 };
 
-class CustomHeaderContainer extends Component {
-  handleLogOut = () => {
-    const { logOut } = this.props;
-    logOut();
+function CustomHeaderContainer({ logOut, title, leftButton, rightButton }) {
+  const navigation = useNavigation();
+
+  const handleLogOut = () => {
+    logOut(navigation);
   };
 
-  handleNotifications = () => {
+  const handleNotifications = () => {
     // TODO notifications button press
   };
-
-  render() {
-    const { title, leftButton, rightButton } = this.props;
-
-    return (
-      <View style={styles.container}>
-        <ImageBackground style={styles.image} source={require('./assets/bc_nav_bar.png')} resizeMode="cover">
-          {leftButton ? (
-            <TouchableOpacity
-              onPress={leftButton === 'Logout' ? this.handleLogOut : this.handleNotifications}
-            >
-              <Image style={styles.leftButton} source={Icons[leftButton]()} />
-            </TouchableOpacity>
-          ) : (
-            <View style={styles.leftButton} />
-          )}
-          <Text style={styles.title}>{title}</Text>
-          {rightButton ? (
-            <TouchableOpacity>
-              <Image style={styles.rightButton} source={Icons[rightButton]()} />
-            </TouchableOpacity>
-          ) : (
-            <View style={styles.rightButton} />
-          )}
-        </ImageBackground>
-      </View>
-    );
-  }
+  return (
+    <View style={styles.container}>
+      <ImageBackground style={styles.image} source={require('./assets/bc_nav_bar.png')} resizeMode="cover">
+        {leftButton ? (
+          <TouchableOpacity onPress={leftButton === 'Logout' ? handleLogOut : handleNotifications}>
+            <Image style={styles.leftButton} source={Icons[leftButton]()} />
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.leftButton} />
+        )}
+        <Text style={styles.title}>{title}</Text>
+        {rightButton ? (
+          <TouchableOpacity>
+            <Image style={styles.rightButton} source={Icons[rightButton]()} />
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.rightButton} />
+        )}
+      </ImageBackground>
+    </View>
+  );
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    logOut: () => dispatch(NavigationActions.logOut())
-  };
-}
-
+const mapDispatchToProps = dispatch => ({
+  logOut: navigation => dispatch(NavigationActions.logOut(navigation))
+});
 CustomHeaderContainer.propTypes = {
   leftButton: PropTypes.string,
   logOut: PropTypes.func,
@@ -66,4 +58,4 @@ CustomHeaderContainer.propTypes = {
   title: PropTypes.string
 };
 
-export default connect(mapDispatchToProps)(CustomHeaderContainer);
+export default connect(null, mapDispatchToProps)(CustomHeaderContainer);

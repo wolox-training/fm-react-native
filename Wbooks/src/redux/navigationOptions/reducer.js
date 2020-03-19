@@ -7,9 +7,6 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.LOG_OUT:
-      return initialState;
-
     default:
       return state;
   }

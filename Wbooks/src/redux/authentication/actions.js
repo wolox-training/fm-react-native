@@ -37,11 +37,13 @@ const AuthenticationActions = {
     });
     const response = await AuthenticationService.signIn(email, password);
     if (response.ok) {
-      const { data: user } = response.data;
+      const {
+        data: { uid, userEmail }
+      } = response.data;
       const sessionData = {
-        uid: user.uid,
+        uid,
         accessToken: response.headers['access-token'],
-        email: user.email
+        email: userEmail
       };
       try {
         await AsyncStorage.setItem(SESSION_DATA_KEY, JSON.stringify(sessionData));
