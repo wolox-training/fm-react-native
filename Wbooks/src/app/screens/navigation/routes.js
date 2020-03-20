@@ -1,4 +1,6 @@
 const routes = {
+  LogIn: 'LogIn',
+  Main: 'Main',
   Library: 'Library',
   BookDetail: 'BookDetail',
   Settings: 'Settings',

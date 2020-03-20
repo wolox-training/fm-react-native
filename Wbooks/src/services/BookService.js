@@ -1,9 +1,9 @@
 import api from '../config/api';
 
 const service = {
-  getBookList: () => api.get('/books'),
+  getBookList: () => api.get('/api/v1/books'),
 
-  getRentedBooks: () => api.get('/rents'),
+  getRentedBooks: () => api.get('/api/v1/rents'),
 
   rentBook: (bookId, userId, startDate, endDate) =>
     api.put('/rents', {

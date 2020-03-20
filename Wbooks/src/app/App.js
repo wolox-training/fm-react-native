@@ -11,12 +11,12 @@ import { Provider } from 'react-redux';
 
 import store from '../redux/store';
 
-import TabNavigator from './screens/navigation/tabsNavigator';
+import MainStackNavigator from './screens/navigation/mainNavigator';
 
 const App: () => React$Node = () => (
   <Provider store={store}>
     <NavigationContainer>
-      <TabNavigator />
+      <MainStackNavigator />
     </NavigationContainer>
   </Provider>
 );
