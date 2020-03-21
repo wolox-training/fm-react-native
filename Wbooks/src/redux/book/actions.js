@@ -1,77 +1,56 @@
-import BookService from '../../services/BookService';
+import { completeTypes, createTypes } from 'redux-recompose';
 
-export const actionTypes = {
-  LOAD_BOOK_DETAILS: 'LOAD_BOOK_DETAILS',
-  GET_BOOK_LIST: 'GET_BOOK_LIST',
-  GET_BOOK_LIST_SUCCESS: 'GET_BOOK_LIST_SUCCESS',
-  GET_BOOK_LIST_ERROR: 'GET_BOOK_LIST_ERROR',
-  GET_RENTED_BOOKS: 'GET_RENTED_BOOKS',
-  GET_RENTED_BOOKS_SUCCESS: 'GET_RENTED_BOOKS_SUCCESS',
-  GET_RENTED_BOOKS_ERROR: 'GET_RENTED_BOOKS_ERROR',
-  ADD_TO_WISHLIST: 'ADD_BOOK_TO_WISHLIST',
-  RENT_BOOK: 'RENT_BOOK',
-  RETURN_BOOK: 'RETURN_BOOK',
-  ADD_COMMENT: 'ADD_COMMENT'
-};
+import { getBookList, getRentedBooks } from '../../services/BookService';
 
-const BookActions = {
-  loadBookDetails: book => ({
-    type: actionTypes.LOAD_BOOK_DETAILS,
-    payload: {
-      book
-    }
+export const actions = createTypes(
+  completeTypes([
+    'GET_BOOK_LIST',
+    'GET_RENTED_BOOKS',
+    'LOAD_BOOK_DETAILS',
+    'RETURN_BOOK',
+    'RENT_BOOK',
+    'ADD_BOOK_TO_WISHLIST',
+    'ADD_COMMENT'
+  ]),
+  '@BOOKS'
+);
+
+export const actionCreators = {
+  getBookList: () => ({
+    type: actions.BOOKS,
+    target: 'bookList',
+    service: getBookList
   }),
-  getBookList: () => async dispatch => {
-    const response = await BookService.getBookList();
-    if (response.ok) {
-      dispatch({
-        type: actionTypes.GET_BOOK_LIST_SUCCESS,
-        payload: response.data.page
-      });
-    } else {
-      dispatch({
-        type: actionTypes.GET_BOOK_LIST_ERROR
-      });
-    }
-  },
-  getRentedBooks: () => async dispatch => {
-    const response = await BookService.getRentedBooks();
-    if (response.ok) {
-      const rentedBooks = response.data.page.map(rental => rental.book);
-      dispatch({
-        type: actionTypes.GET_RENTED_BOOKS_SUCCESS,
-        payload: rentedBooks
-      });
-    } else {
-      dispatch({
-        type: actionTypes.GET_RENTED_BOOKS_ERROR
-      });
-    }
-  },
+  loadBookDetails: book => ({
+    type: actions.LOAD_BOOK_DETAILS,
+    target: 'bookDetail',
+    payload: book
+  }),
+  getRentedBooks: () => ({
+    type: actions.BOOKS,
+    target: 'bookList',
+    service: getRentedBooks
+  }),
   addToWishList: book => ({
-    type: actionTypes.ADD_TO_WISHLIST,
-    payload: {
-      book
-    }
+    type: actions.ADD_BOOK_TO_WISHLIST,
+    target: 'wishList',
+    payload: book
   }),
   rentBook: book => ({
-    type: actionTypes.RENT_BOOK,
-    payload: {
-      book
-    }
+    type: actions.RENT_BOOK,
+    target: 'rentedBooks',
+    payload: book
   }),
   returnBook: book => ({
-    type: actionTypes.RETURN_BOOK,
-    payload: {
-      book
-    }
+    type: actions.RETURN_BOOK,
+    target: 'bookDetail',
+    payload: book
   }),
   addComment: book => ({
-    type: actionTypes.RENT_BOOK,
-    payload: {
-      book
-    }
+    type: actions.LOAD_BOOK_DETAILS,
+    target: 'bookDetail',
+    payload: book
   })
 };
 
-export default BookActions;
+export default actionCreators;
