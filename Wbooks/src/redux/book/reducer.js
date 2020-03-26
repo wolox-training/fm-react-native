@@ -18,11 +18,13 @@ const reducerDescription = {
     actions.GET_BOOK_LIST,
     actions.GET_RENTED_BOOKS,
     actions.LOAD_BOOK_DETAILS,
-    (actions.RETURN_BOOK = onDelete()),
-    (actions.RENT_BOOK = onConcatenate()),
-    actions.ADD_TO_WISHLIST,
+    actions.ADD_BOOK_TO_WISHLIST,
     actions.ADD_COMMENT
-  ]
+  ],
+  override: {
+    [actions.RETURN_BOOK]: onDelete(),
+    [actions.RENT_BOOK]: onConcatenate()
+  }
 };
 
 export default createReducer(initialState, completeReducer(reducerDescription));

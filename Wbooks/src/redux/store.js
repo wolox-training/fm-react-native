@@ -17,7 +17,7 @@ const reducers = {
 };
 
 const enhancers = [];
-enhancers.push(applyMiddleware(middlewares));
+enhancers.push(applyMiddleware(...middlewares));
 if (__DEV__) {
   enhancers.push(Reactotron.createEnhancer(true));
 }

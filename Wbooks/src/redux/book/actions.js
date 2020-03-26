@@ -3,15 +3,10 @@ import { completeTypes, createTypes } from 'redux-recompose';
 import { getBookList, getRentedBooks } from '../../services/BookService';
 
 export const actions = createTypes(
-  completeTypes([
-    'GET_BOOK_LIST',
-    'GET_RENTED_BOOKS',
-    'LOAD_BOOK_DETAILS',
-    'RETURN_BOOK',
-    'RENT_BOOK',
-    'ADD_BOOK_TO_WISHLIST',
-    'ADD_COMMENT'
-  ]),
+  completeTypes(
+    ['GET_BOOK_LIST', 'GET_RENTED_BOOKS', 'LOAD_BOOK_DETAILS', 'ADD_BOOK_TO_WISHLIST', 'ADD_COMMENT'],
+    ['RETURN_BOOK', 'RENT_BOOK']
+  ),
   '@@BOOKS'
 );
 
@@ -19,7 +14,8 @@ export const actionCreators = {
   getBookList: () => ({
     type: actions.GET_BOOK_LIST,
     target: 'bookList',
-    service: getBookList
+    service: getBookList,
+    successSelector: response => response.data
   }),
   loadBookDetails: book => ({
     type: actions.LOAD_BOOK_DETAILS,

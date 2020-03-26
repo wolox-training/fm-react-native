@@ -28,9 +28,14 @@ function BookListContainer({ navigation, bookList, rentedBooks }) {
 
   const keyExtractor = ({ id }) => `${id}`;
 
+  const fetchBooks = useCallback(
+    () => (isCart ? dispatch(BookActions.getRentedBooks()) : dispatch(BookActions.getBookList())),
+    [dispatch, isCart]
+  );
+
   useEffect(() => {
-    isCart ? dispatch(BookActions.getRentedBooks()) : dispatch(BookActions.getBookList());
-  }, [dispatch, isCart]);
+    fetchBooks();
+  }, [fetchBooks]);
 
   return (
     <View>
