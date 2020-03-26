@@ -12,12 +12,12 @@ export const actions = createTypes(
     'ADD_BOOK_TO_WISHLIST',
     'ADD_COMMENT'
   ]),
-  '@BOOKS'
+  '@@BOOKS'
 );
 
 export const actionCreators = {
   getBookList: () => ({
-    type: actions.BOOKS,
+    type: actions.GET_BOOK_LIST,
     target: 'bookList',
     service: getBookList
   }),
@@ -27,8 +27,8 @@ export const actionCreators = {
     payload: book
   }),
   getRentedBooks: () => ({
-    type: actions.BOOKS,
-    target: 'bookList',
+    type: actions.GET_RENTED_BOOKS,
+    target: 'rentedBooks',
     service: getRentedBooks
   }),
   addToWishList: book => ({
