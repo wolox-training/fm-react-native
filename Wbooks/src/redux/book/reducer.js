@@ -2,6 +2,7 @@ import { createReducer, completeReducer, completeState } from 'redux-recompose';
 import onDelete from 'redux-recompose/lib/effects/onDelete';
 import onConcatenate from 'redux-recompose/lib/effects/onConcatenate';
 import onSetValue from 'redux-recompose/lib/effects/onSetValue';
+import onReadValue from 'redux-recompose/lib/effects/onReadValue';
 
 import { actions } from './actions';
 
@@ -17,7 +18,7 @@ const initialState = completeState(stateDescription);
 const reducerDescription = {
   primaryActions: [actions.GET_BOOK_LIST, actions.GET_RENTED_BOOKS, actions.ADD_COMMENT],
   override: {
-    [actions.LOAD_BOOK_DETAILS]: onSetValue(),
+    [actions.LOAD_BOOK_DETAILS]: onReadValue(),
     [actions.RETURN_BOOK]: onDelete(),
     [actions.RENT_BOOK]: onConcatenate(),
     [actions.ADD_BOOK_TO_WISHLIST]: onConcatenate()
