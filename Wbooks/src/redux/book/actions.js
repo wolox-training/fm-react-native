@@ -4,8 +4,8 @@ import { getBookList, getRentedBooks } from '../../services/BookService';
 
 export const actions = createTypes(
   completeTypes(
-    ['GET_BOOK_LIST', 'GET_RENTED_BOOKS', 'LOAD_BOOK_DETAILS', 'ADD_BOOK_TO_WISHLIST', 'ADD_COMMENT'],
-    ['RETURN_BOOK', 'RENT_BOOK']
+    ['GET_BOOK_LIST', 'GET_RENTED_BOOKS', 'ADD_COMMENT'],
+    ['RETURN_BOOK', 'RENT_BOOK', 'ADD_BOOK_TO_WISHLIST', 'LOAD_BOOK_DETAILS']
   ),
   '@@BOOKS'
 );
@@ -43,7 +43,7 @@ export const actionCreators = {
     payload: book
   }),
   addComment: book => ({
-    type: actions.LOAD_BOOK_DETAILS,
+    type: actions.ADD_COMMENT,
     target: 'bookDetail',
     payload: book
   })

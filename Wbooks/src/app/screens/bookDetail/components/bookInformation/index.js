@@ -15,14 +15,14 @@ function BookInformation({
   isCart,
   isRented
 }) {
-  const { image_url: imageUrl, title, author, genre, year } = bookDetail;
+  const { image, title, author, genre, year } = bookDetail;
   const disableButton = !isCart && isRented;
   return (
     <View style={styles.bookInfoContainer}>
       <View style={styles.bookDataContainer}>
         <Image
           source={{
-            uri: imageUrl
+            uri: image
           }}
           style={styles.bookCover}
         />

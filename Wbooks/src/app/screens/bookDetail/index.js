@@ -19,6 +19,7 @@ class BookDetailContainer extends Component {
 
   handleAddToWishList = () => {
     const { bookDetail, addToWishList } = this.props;
+    console.log(bookDetail);
     addToWishList(bookDetail);
   };
 
@@ -33,8 +34,8 @@ class BookDetailContainer extends Component {
   };
 
   render() {
-    const { route, bookDetail, isRented } = this.props;
-    const { isCart } = route.params;
+    const { bookDetail, isRented, isCart } = this.props;
+    console.log(bookDetail);
     const reviews = reviewsMock;
     return (
       <ScrollView style={styles.bookDetailContainer}>
