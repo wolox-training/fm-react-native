@@ -7,7 +7,6 @@ import { compose } from 'redux';
 import Book from '../book/index';
 import BookActions from '../../../../../redux/book/actions';
 import bookModel from '../../../../proptypes/bookModel';
-import withLoadingScreen from '../../../../components/loading/index';
 import navigationRoutes from '../../../navigation/routes';
 
 import styles from './styles';
@@ -15,7 +14,6 @@ import styles from './styles';
 class BookListContainer extends Component {
   handlePress = item => {
     const { isCart, loadBookDetails, navigation } = this.props;
-    console.log(item);
     loadBookDetails(item);
     navigation.navigate('BookDetail', { isCart });
   };
