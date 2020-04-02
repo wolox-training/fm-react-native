@@ -33,8 +33,7 @@ class BookDetailContainer extends Component {
   };
 
   render() {
-    const { route, bookDetail, isRented } = this.props;
-    const { isCart } = route.params;
+    const { bookDetail, isRented, isCart } = this.props;
     const reviews = reviewsMock;
     return (
       <ScrollView style={styles.bookDetailContainer}>

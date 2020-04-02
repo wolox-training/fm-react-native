@@ -1,56 +1,68 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { Component } from 'react';
 import { FlatList, View } from 'react-native';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useNavigationState } from '@react-navigation/native';
+import { compose } from 'redux';
 
 import Book from '../book/index';
 import BookActions from '../../../../../redux/book/actions';
 import bookModel from '../../../../proptypes/bookModel';
+import navigationRoutes from '../../../navigation/routes';
 
 import styles from './styles';
 
-function BookListContainer({ navigation, bookList, rentedBooks }) {
-  const dispatch = useDispatch();
-  const navigationState = useNavigationState(state => state);
-  const isCart = navigationState.routes[navigationState.index].name === 'MyRentals';
-  const handlePress = useCallback(
-    item => {
-      dispatch(BookActions.loadBookDetails(item));
-      navigation.navigate('BookDetail', { navigation, isCart });
-    },
-    [dispatch, isCart, navigation]
-  );
+class BookListContainer extends Component {
+  handlePress = item => {
+    const { isCart, loadBookDetails, navigation } = this.props;
+    loadBookDetails(item);
+    navigation.navigate('BookDetail', { isCart });
+  };
 
-  const renderItem = useCallback(({ item }) => <Book book={item} onPress={handlePress} />, [handlePress]);
+  componentDidMount() {
+    const { isCart, getBookList, getRentedBooks } = this.props;
+    if (isCart) {
+      getRentedBooks();
+    } else {
+      getBookList();
+    }
+  }
 
-  const keyExtractor = ({ id }) => `${id}`;
+  renderItem = ({ item }) => <Book book={item} onPress={this.handlePress} />;
 
-  useEffect(() => {
-    isCart ? dispatch(BookActions.getRentedBooks()) : dispatch(BookActions.getBookList());
-  }, [dispatch, isCart]);
+  keyExtractor = ({ id }) => `${id}`;
 
-  return (
-    <View>
-      <FlatList
-        style={styles.container}
-        data={isCart ? rentedBooks : bookList}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-      />
-    </View>
-  );
+  render() {
+    const { bookList, rentedBooks, isCart } = this.props;
+    return (
+      <View>
+        <FlatList
+          style={styles.container}
+          data={isCart ? rentedBooks : bookList.page}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+        />
+      </View>
+    );
+  }
 }
 
-const mapStateToProps = state => ({
-  bookList: state.bookReducer.bookList,
+const mapStateToProps = (state, props) => ({
+  bookList: state.bookReducer.bookList || [],
   bookDetail: state.bookReducer.bookDetail,
-  rentedBooks: state.bookReducer.rentedBooks
+  rentedBooks: state.bookReducer.rentedBooks || [],
+  loading: state.bookReducer.bookListLoading || state.bookReducer.rentedBooksLoading,
+  isCart: props.route.name === navigationRoutes.MyRentals
+});
+
+const mapDispatchToProps = dispatch => ({
+  getRentedBooks: () => dispatch(BookActions.getRentedBooks()),
+  getBookList: () => dispatch(BookActions.getBookList()),
+  loadBookDetails: book => dispatch(BookActions.loadBookDetails(book))
 });
 
 BookListContainer.propTypes = {
   bookList: PropTypes.arrayOf(bookModel).isRequired,
-  navigation: PropTypes.func.isRequired
+  rentedBooks: PropTypes.arrayOf(bookModel).isRequired
 };
 
-export default connect(mapStateToProps)(BookListContainer);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(BookListContainer);
