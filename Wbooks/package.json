@@ -56,7 +56,7 @@
     "install": "^0.13.0",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
-    "npm": "^6.14.2",
+    "npm": "^6.14.6",
     "prettier": "^1.19.1",
     "react-test-renderer": "16.9.0",
     "reactotron-apisauce": "^3.0.0",
